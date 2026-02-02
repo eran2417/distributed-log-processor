@@ -1,0 +1,17 @@
+services:
+  log-generator:
+    build:
+      context: ./src/services/log-generator
+    volumes:
+      - ./src/services/log-generator:/app
+      - ./logs:/logs
+    environment:
+      - LOG_RATE=2
+      - LOG_FORMAT=json
+      - CONSOLE_OUTPUT=true
+      - OUTPUT_FILE=/logs/generated_logs.log
+      - LOG_TYPES=ERA,INFO,DEBUG,WARNING,ERROR
+      - ENABLE_BURSTS=true
+      - BURSTS_FREQUENCY=5
+      - BURSTS_DURATION=10
+      - BURSTS_MULTIPLIER=15
